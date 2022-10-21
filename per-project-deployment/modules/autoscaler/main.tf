@@ -86,7 +86,7 @@ resource "google_storage_bucket" "bucket_gcf_source" {
 
 data "archive_file" "local_poller_source" {
   type        = "zip"
-  source_dir  = "${abspath("${path.module}/../../../poller")}"
+  source_dir  = abspath("${path.module}/poller")
   output_path = "${var.local_output_path}/poller.zip"
 }
 
@@ -98,7 +98,7 @@ resource "google_storage_bucket_object" "gcs_functions_poller_source" {
 
 data "archive_file" "local_scaler_source" {
   type        = "zip"
-  source_dir  = "${abspath("${path.module}/../../../scaler")}"
+  source_dir  = abspath("${path.module}/scaler")
   output_path = "${var.local_output_path}/scaler.zip"
 }
 
