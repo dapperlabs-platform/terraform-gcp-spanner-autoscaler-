@@ -36,15 +36,15 @@ module "autoscaler" {
   project_id = var.project_id
 }
 
-module "spanner" {
-  source = "./modules/spanner"
-
-  terraform_spanner = var.terraform_spanner
-  project_id        = local.app_project_id
-  spanner_name      = var.spanner_name
-  poller_sa_email   = module.autoscaler.poller_sa_email
-  scaler_sa_email   = module.autoscaler.scaler_sa_email
-}
+#module "spanner" {
+#  source = "./modules/spanner"
+#
+#  terraform_spanner = var.terraform_spanner
+#  project_id        = local.app_project_id
+#  spanner_name      = var.spanner_name
+#  poller_sa_email   = module.autoscaler.poller_sa_email
+#  scaler_sa_email   = module.autoscaler.scaler_sa_email
+#}
 
 module "scheduler" {
   source = "./modules/scheduler"
