@@ -63,7 +63,7 @@ resource "google_firestore_document" "autoscaler_doc" {
   collection  = "spannerAutoscaler"
   document_id = "autoscale-test"
   fields      =  ""
-  depends_on = [google_app_engine_application.app]
+#  depends_on = [google_app_engine_application.app]
 }
 
 # Auto Scaler Deployment
