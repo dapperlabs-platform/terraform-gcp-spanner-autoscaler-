@@ -7,6 +7,8 @@ terraform {
 
 provider "google" {
   project = "dl-foladele-reference-infra"
+  region = "us-central1"
+  zone = "us-central1-c"
 }
 
 module "project" {
