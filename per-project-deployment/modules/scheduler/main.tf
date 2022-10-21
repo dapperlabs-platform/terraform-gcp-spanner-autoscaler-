@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-resource "google_app_engine_application" "app" {
-  project     = var.project_id
-  location_id = var.location
-}
+#resource "google_app_engine_application" "app" {
+#  project     = var.project_id
+#  location_id = var.location
+#}
 
 resource "google_cloud_scheduler_job" "poller_job" {
   name        = "poll-main-instance-metrics"
@@ -30,5 +30,5 @@ resource "google_cloud_scheduler_job" "poller_job" {
     data       = var.pubsub_data
   }
 
-  depends_on = [google_app_engine_application.app]
+#  depends_on = [google_app_engine_application.app]
 }

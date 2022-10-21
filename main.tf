@@ -50,17 +50,18 @@ resource "google_project_service" "autoscaler_services" {
   disable_dependent_services = var.service_config.disable_dependent_services
 }
 
-#resource "google_app_engine_application" "app" {
-#  project     = var.spanner_project_id
-#  location_id = "us-central"
-#  database_type = "CLOUD_FIRESTORE"
-#}
+resource "google_app_engine_application" "app" {
+  project     = var.spanner_project_id
+  location_id = "us-central"
+  database_type = "CLOUD_FIRESTORE"
+}
 
 resource "google_firestore_document" "autoscaler_doc" {
   project     = var.spanner_project_id
   collection  = "spannerAutoscaler"
   document_id = "autoscale-test"
   fields      =  ""
+  depends_on = [google_app_engine_application.app]
 }
 
 # Auto Scaler Deployment
