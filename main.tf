@@ -1,12 +1,12 @@
 terraform {
   backend "gcs" {
-    bucket = "femi-gke-workload-identity-bucket"
+    bucket = "demo-infra"
     prefix = "terraform/state"
   }
 }
 
 provider "google" {
-  project = "sre-scratchpad"
+  project = "dl-foladele-reference-infra"
 }
 
 module "project" {
