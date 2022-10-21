@@ -60,6 +60,12 @@ resource "google_firestore_document" "autoscaler_doc" {
   project     = var.spanner_project_id
   collection  = "spannerAutoscaler"
   document_id = "autoscale-test"
-  fields      =  "{}"
+  fields      =  ""
   depends_on = [google_app_engine_application.app]
+}
+
+# Auto Scaler Deployment
+module "autoscale" {
+  source = "./per-project-deployment"
+  project_id = var.spanner_project_id
 }
