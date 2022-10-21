@@ -58,16 +58,16 @@ resource "google_project_service" "autoscaler_services" {
 #  database_type = "CLOUD_FIRESTORE"
 #}
 
-resource "google_firestore_document" "autoscaler_doc" {
-  project     = var.spanner_project_id
-  collection  = "spannerAutoscaler"
-  document_id = "autoscale-test"
-  fields      =  ""
+#resource "google_firestore_document" "autoscaler_doc" {
+#  project     = var.spanner_project_id
+#  collection  = "spannerAutoscaler"
+#  document_id = "autoscale-test"
+#  fields      =  ""
 #  depends_on = [google_app_engine_application.app]
-}
+#}
 
 # Auto Scaler Deployment
-module "autoscale" {
-  source = "./per-project-deployment"
-  project_id = var.spanner_project_id
-}
+#module "autoscale" {
+#  source = "./per-project-deployment"
+#  project_id = var.spanner_project_id
+#}
