@@ -28,16 +28,16 @@ provider "google" {
   zone    = var.zone
 }
 
-module "autoscaler" {
-  source = "./modules/autoscaler"
-
-  project_id = var.project_id
-}
+#module "autoscaler" {
+#  source = "./modules/autoscaler"
+#
+#  project_id = var.project_id
+#}
 
 module "spanner" {
   source = "./modules/spanner"
 
-  terraform_spanner = var.terraform_spanner
+  terraform_spanner = true
   project_id        = local.app_project_id
   spanner_name      = var.spanner_name
   poller_sa_email   = module.autoscaler.poller_sa_email
