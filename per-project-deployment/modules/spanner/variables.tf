@@ -15,13 +15,13 @@
  */
 
 variable "project_id" {
-  type   = string
+  type = string
 }
 
 variable "terraform_spanner" {
   description = "If set to true, Terraform will create a Cloud Spanner instance and DB."
-  type    = bool
-  default = true
+  type        = bool
+  default     = true
 }
 
 variable "spanner_name" {
@@ -30,11 +30,11 @@ variable "spanner_name" {
 }
 
 variable "poller_sa_email" {
-  type    = string
+  type = string
 }
 
 variable "scaler_sa_email" {
-  type    = string
+  type = string
 }
 
 variable "region" {

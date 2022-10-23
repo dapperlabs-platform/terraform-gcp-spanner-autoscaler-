@@ -30,5 +30,5 @@ resource "google_cloud_scheduler_job" "poller_job" {
     data       = var.pubsub_data
   }
 
-#  depends_on = [google_app_engine_application.app]
+  #  depends_on = [google_app_engine_application.app]
 }

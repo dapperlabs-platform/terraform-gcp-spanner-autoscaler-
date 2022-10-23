@@ -53,7 +53,7 @@ resource "google_pubsub_topic_iam_member" "forwarder_pubsub_pub_iam" {
   project = var.project_id
   topic   = google_pubsub_topic.poller_topic.name
   role    = "roles/pubsub.publisher"
-  member = each.key
+  member  = each.key
 }
 
 resource "google_pubsub_topic" "scaler_topic" {
@@ -77,10 +77,10 @@ resource "google_pubsub_topic_iam_member" "scaler_pubsub_sub_iam" {
 // Cloud Functions
 
 resource "google_storage_bucket" "bucket_gcf_source" {
-  name          = "${var.project_id}-gcf-source"
-  storage_class = "REGIONAL"
-  location      = var.region
-  force_destroy = "true"
+  name                        = "${var.project_id}-gcf-source"
+  storage_class               = "REGIONAL"
+  location                    = var.region
+  force_destroy               = "true"
   uniform_bucket_level_access = var.uniform_bucket_level_access
 }
 
@@ -109,12 +109,12 @@ resource "google_storage_bucket_object" "gcs_functions_scaler_source" {
 }
 
 resource "google_cloudfunctions_function" "poller_function" {
-  name = "tf-poller-function"
-  project = var.project_id
-  region = var.region
+  name                = "tf-poller-function"
+  project             = var.project_id
+  region              = var.region
   available_memory_mb = "256"
-  entry_point = "checkSpannerScaleMetricsPubSub"
-  runtime = "nodejs10"
+  entry_point         = "checkSpannerScaleMetricsPubSub"
+  runtime             = "nodejs10"
   event_trigger {
     event_type = "google.pubsub.topic.publish"
     resource   = google_pubsub_topic.poller_topic.id
@@ -125,12 +125,12 @@ resource "google_cloudfunctions_function" "poller_function" {
 }
 
 resource "google_cloudfunctions_function" "scaler_function" {
-  name = "tf-scaler-function"
-  project = var.project_id
-  region = var.region
+  name                = "tf-scaler-function"
+  project             = var.project_id
+  region              = var.region
   available_memory_mb = "256"
-  entry_point = "scaleSpannerInstancePubSub"
-  runtime = "nodejs10"
+  entry_point         = "scaleSpannerInstancePubSub"
+  runtime             = "nodejs10"
   event_trigger {
     event_type = "google.pubsub.topic.publish"
     resource   = google_pubsub_topic.scaler_topic.id

@@ -15,12 +15,12 @@
  */
 
 resource "google_spanner_instance" "main" {
-  count        = var.terraform_spanner ? 1 : 0
+  count = var.terraform_spanner ? 1 : 0
 
-  name         = var.spanner_name
-  config       = "regional-${var.region}"
-  display_name = var.spanner_name
-  project      = var.project_id
+  name             = var.spanner_name
+  config           = "regional-${var.region}"
+  display_name     = var.spanner_name
+  project          = var.project_id
   processing_units = 100
 
   lifecycle {
@@ -29,7 +29,7 @@ resource "google_spanner_instance" "main" {
 }
 
 resource "google_spanner_database" "database" {
-  count        = var.terraform_spanner ? 1 : 0
+  count = var.terraform_spanner ? 1 : 0
 
   instance = var.spanner_name
   name     = "my-database"
@@ -38,7 +38,7 @@ resource "google_spanner_database" "database" {
     "CREATE TABLE t2 (t2 INT64 NOT NULL,) PRIMARY KEY(t2)",
   ]
   # Must specify project because provider project may be different than var.project_id
-  project      = var.project_id
+  project = var.project_id
 
   depends_on = [google_spanner_instance.main]
 }

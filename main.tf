@@ -7,8 +7,8 @@ terraform {
 
 provider "google" {
   project = "dl-foladele-reference-infra"
-  region = "us-central1"
-  zone = "us-central1-c"
+  region  = "us-central1"
+  zone    = "us-central1-c"
 }
 
 module "project" {
@@ -52,22 +52,22 @@ resource "google_project_service" "autoscaler_services" {
   disable_dependent_services = var.service_config.disable_dependent_services
 }
 
-#resource "google_app_engine_application" "app" {
-#  project     = var.spanner_project_id
-#  location_id = "us-central"
-#  database_type = "CLOUD_FIRESTORE"
-#}
+resource "google_app_engine_application" "app" {
+  project       = var.spanner_project_id
+  location_id   = "us-central"
+  database_type = "CLOUD_FIRESTORE"
+}
 
-#resource "google_firestore_document" "autoscaler_doc" {
-#  project     = var.spanner_project_id
-#  collection  = "spannerAutoscaler"
-#  document_id = "autoscale-test"
-#  fields      =  ""
-#  depends_on = [google_app_engine_application.app]
-#}
+resource "google_firestore_document" "autoscaler_doc" {
+  project     = var.spanner_project_id
+  collection  = "spannerAutoscaler"
+  document_id = "autoscale-test"
+  fields      = ""
+  depends_on  = [google_app_engine_application.app]
+}
 
 # Auto Scaler Deployment
-#module "autoscale" {
-#  source = "./per-project-deployment"
-#  project_id = var.spanner_project_id
-#}
+module "autoscale" {
+  source     = "./per-project-deployment"
+  project_id = var.spanner_project_id
+}

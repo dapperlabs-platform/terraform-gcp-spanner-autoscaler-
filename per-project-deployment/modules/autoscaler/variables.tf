@@ -29,12 +29,12 @@ variable "local_output_path" {
 }
 
 variable "forwarder_sa_emails" {
-  type    = list(string)
+  type = list(string)
   // Example ["serviceAccount:forwarder_sa@app-project.iam.gserviceaccount.com"]
   default = []
 }
 
 variable "uniform_bucket_level_access" {
-  type = bool
+  type    = bool
   default = false
 }

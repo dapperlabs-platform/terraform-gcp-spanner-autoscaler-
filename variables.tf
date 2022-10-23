@@ -1,7 +1,7 @@
 variable "services" {
   description = "Service APIs to enable."
   type        = list(string)
-  default     = [
+  default = [
     "cloudresourcemanager.googleapis.com",
     "appengine.googleapis.com",
     "firestore.googleapis.com",
@@ -16,7 +16,7 @@ variable "services" {
 variable "spanner_project_id" {
   description = "ID of GCP project that houses the spanner instance to be auto scaled."
   type        = string
-  default = "dl-foladele-reference-infra"
+  default     = "dl-foladele-reference-infra"
 }
 
 variable "service_config" {
