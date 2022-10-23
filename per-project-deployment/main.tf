@@ -28,11 +28,11 @@ provider "google" {
   zone    = var.zone
 }
 
-#module "autoscaler" {
-#  source = "./modules/autoscaler"
-#
-#  project_id = var.project_id
-#}
+module "autoscaler" {
+  source = "./modules/autoscaler"
+
+  project_id = var.project_id
+}
 
 module "spanner" {
   source = "./modules/spanner"
