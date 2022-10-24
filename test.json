@@ -1,3 +1,11 @@
-{
-  "name": "test"
-}
+[
+  {
+    "instanceId": "autoscale-test",
+    "maxSize": 3,
+    "minSize": 1,
+    "projectId": "dl-foladele-reference-infra",
+    "scalerPubSubTopic": "projects/dl-foladele-reference-infra/topics/scaler-topic",
+    "scalingMethod": "LINEAR",
+    "units": "NODES"
+  }
+]
