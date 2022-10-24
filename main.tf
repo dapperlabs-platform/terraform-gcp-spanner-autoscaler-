@@ -67,7 +67,7 @@ resource "google_app_engine_application" "app" {
 #}
 
 # Auto Scaler Deployment
-module "autoscale" {
-  source     = "./per-project-deployment"
-  project_id = var.spanner_project_id
-}
+#module "autoscale" {
+#  source     = "./per-project-deployment"
+#  project_id = var.spanner_project_id
+#}
