@@ -50,6 +50,16 @@ variable "app_project_id" {
   default     = ""
 }
 
+variable "scheduler_location" {
+  type        = string
+  description = "Scheduler Location"
+}
+
+variable "scheduler_timezone" {
+  type    = string
+  default = "Scheduler timezone"
+}
+
 variable "terraform_dashboard" {
   description = "If set to true, Terraform will create a Cloud Monitoring dashboard including important Spanner metrics."
   type        = bool

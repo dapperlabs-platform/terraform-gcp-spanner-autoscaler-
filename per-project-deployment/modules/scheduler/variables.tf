@@ -19,7 +19,7 @@ variable "project_id" {
 }
 
 variable "location" {
-  type    = string
+  type = string
 }
 
 variable "schedule" {
@@ -28,8 +28,7 @@ variable "schedule" {
 }
 
 variable "time_zone" {
-  type    = string
-  default = "America/Los_Angeles"
+  type = string
 }
 
 variable "pubsub_topic" {

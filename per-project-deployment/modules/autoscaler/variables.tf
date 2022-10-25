@@ -19,7 +19,7 @@ variable "project_id" {
 }
 
 variable "region" {
-  type    = string
+  type = string
 }
 
 variable "local_output_path" {

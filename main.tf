@@ -62,7 +62,9 @@ resource "google_firestore_document" "autoscaler_doc" {
 
 # Auto Scaler Deployment
 module "autoscale" {
-  source     = "./per-project-deployment"
-  project_id = var.spanner_project_id
-  region = "us-central1"
+  source             = "./per-project-deployment"
+  project_id         = var.spanner_project_id
+  region             = "us-central1"
+  scheduler_location = "us-central"
+  scheduler_timezone = "America/Los_Angeles"
 }

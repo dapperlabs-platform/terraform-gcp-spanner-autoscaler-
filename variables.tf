@@ -30,3 +30,13 @@ variable "service_config" {
     disable_dependent_services = true
   }
 }
+
+variable "scheduler_location" {
+  type        = string
+  description = "Scheduler Location"
+}
+
+variable "scheduler_timezone" {
+  type    = string
+  default = "Scheduler timezone"
+}

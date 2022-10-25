@@ -38,5 +38,5 @@ variable "scaler_sa_email" {
 }
 
 variable "region" {
-  type    = string
+  type = string
 }
