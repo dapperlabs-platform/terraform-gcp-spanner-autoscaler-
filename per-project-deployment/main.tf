@@ -49,6 +49,7 @@ module "spanner" {
 module "scheduler" {
   source       = "./modules/scheduler"
   location     = var.scheduler_location
+  time_zone = var.scheduler_timezone
   project_id   = var.project_id
   pubsub_topic = module.autoscaler.poller_topic
   pubsub_data = base64encode(jsonencode([{
