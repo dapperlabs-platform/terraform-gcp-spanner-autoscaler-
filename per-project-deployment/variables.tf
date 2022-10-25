@@ -24,13 +24,13 @@ variable "creds_file" {
 }
 
 variable "region" {
-  type    = string
-  default = "us-central1"
+  type = string
+  #  default = "us-central1"
 }
 
 variable "zone" {
-  type    = string
-  default = "us-central1-c"
+  type = string
+  #  default = "us-central1-c"
 }
 
 variable "spanner_name" {
