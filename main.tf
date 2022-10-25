@@ -1,3 +1,9 @@
+locals {
+  project = "dl-foladele-reference-infra-1"
+  region  = "us-central1"
+  zone    = "us-central1-c"
+}
+
 terraform {
   backend "gcs" {
     bucket = "demo-autoscaler-infra"
@@ -6,9 +12,9 @@ terraform {
 }
 
 provider "google" {
-  project = "dl-foladele-reference-infra-1"
-  region  = "us-central1"
-  zone    = "us-central1-c"
+  project = local.project
+  region  = local.region
+  zone    = local.zone
 }
 
 module "project" {
@@ -64,7 +70,8 @@ resource "google_firestore_document" "autoscaler_doc" {
 module "autoscale" {
   source             = "./per-project-deployment"
   project_id         = var.spanner_project_id
-  region             = "us-central1"
+  region             = local.region
   scheduler_location = "us-central"
   scheduler_timezone = "America/Los_Angeles"
+  zone               = local.zone
 }
