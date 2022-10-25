@@ -59,12 +59,12 @@ resource "google_project_service" "autoscaler_services" {
   disable_dependent_services = var.service_config.disable_dependent_services
 }
 
-resource "google_firestore_document" "autoscaler_doc" {
-  project     = var.spanner_project_id
-  collection  = "spannerAutoscaler"
-  document_id = "autoscale-test"
-  fields      = ""
-}
+#resource "google_firestore_document" "autoscaler_doc" {
+#  project     = var.spanner_project_id
+#  collection  = "spannerAutoscaler"
+#  document_id = "autoscale-test"
+#  fields      = ""
+#}
 
 # Auto Scaler Deployment
 module "autoscale" {
