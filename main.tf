@@ -64,4 +64,5 @@ resource "google_firestore_document" "autoscaler_doc" {
 module "autoscale" {
   source     = "./per-project-deployment"
   project_id = var.spanner_project_id
+  region = "us-central1"
 }

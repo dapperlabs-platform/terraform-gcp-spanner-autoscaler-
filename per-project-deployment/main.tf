@@ -32,10 +32,12 @@ module "autoscaler" {
   source = "./modules/autoscaler"
 
   project_id = var.project_id
+  region     = var.region
 }
 
 module "spanner" {
   source = "./modules/spanner"
+  region = var.region
 
   terraform_spanner = true
   project_id        = local.app_project_id
@@ -46,7 +48,7 @@ module "spanner" {
 
 module "scheduler" {
   source = "./modules/scheduler"
-
+  location = var.region
   project_id   = var.project_id
   pubsub_topic = module.autoscaler.poller_topic
   pubsub_data = base64encode(jsonencode([{
