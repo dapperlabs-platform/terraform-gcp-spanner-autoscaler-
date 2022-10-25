@@ -1,19 +1,19 @@
 terraform {
   backend "gcs" {
-    bucket = "demo-infra"
+    bucket = "demo-autoscaler-infra"
     prefix = "terraform/state"
   }
 }
 
 provider "google" {
-  project = "dl-foladele-reference-infra"
+  project = "dl-foladele-reference-infra-1"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
 
 module "project" {
   source          = "github.com/dapperlabs-platform/terraform-google-project?ref=v0.9.0"
-  name            = "dl-foladele-reference-infra"
+  name            = "dl-foladele-reference-infra-1"
   parent          = "folders/669925710268"
   billing_account = "01CF48-052610-ECCCA3"
   oslogin         = false
@@ -30,7 +30,8 @@ module "project" {
     "secretmanager.googleapis.com",
     "artifactregistry.googleapis.com",
     "cloudkms.googleapis.com",
-    "gcp.redisenterprise.com"
+    "gcp.redisenterprise.com",
+    "appengine.googleapis.com"
   ]
 
   iam_additive = {
@@ -44,19 +45,19 @@ module "project" {
 }
 
 ## Enable required Cloud APIs
-#resource "google_project_service" "autoscaler_services" {
-#  for_each                   = toset(var.services)
-#  project                    = var.spanner_project_id
-#  service                    = each.value
-#  disable_on_destroy         = var.service_config.disable_on_destroy
-#  disable_dependent_services = var.service_config.disable_dependent_services
-#}
-
-resource "google_app_engine_application" "app" {
-  project       = var.spanner_project_id
-  location_id   = "us-central"
-  database_type = "CLOUD_FIRESTORE"
+resource "google_project_service" "autoscaler_services" {
+  for_each                   = toset(var.services)
+  project                    = var.spanner_project_id
+  service                    = each.value
+  disable_on_destroy         = var.service_config.disable_on_destroy
+  disable_dependent_services = var.service_config.disable_dependent_services
 }
+
+#resource "google_app_engine_application" "app" {
+#  project       = var.spanner_project_id
+#  location_id   = "us-central"
+#  database_type = "CLOUD_FIRESTORE"
+#}
 
 #resource "google_firestore_document" "autoscaler_doc" {
 #  project     = var.spanner_project_id
